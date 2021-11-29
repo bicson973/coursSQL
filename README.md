@@ -28,6 +28,11 @@
 10- Les regroupements
 
 ### 02-requetes.html
+1- INSERT INTO, insertion
+2- UPDATE, mise à jour
+3- DELETE, effacer
+4- Exercice
+
 ### 03-requetes-imbriquees.html
 ### 04-jointures.html
 
