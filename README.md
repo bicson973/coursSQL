@@ -34,5 +34,12 @@
 4- Exercice
 
 ### 03-requetes-imbriquees.html
+1- Création de la BDD "bibliotèque"
+a/ Modélisation
+b/ Créations de tables
+c/ Création des clefs étrangères
+d/ Insertion des données
+
+2- SELECT sur plusieurs tables
 ### 04-jointures.html
 
