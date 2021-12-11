@@ -1,79 +1,288 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="...">
-        <!-- La description : phrase qui s'affiche et décrit le site dans un resultat de moteur de recherche utile au référencement naturel -->
-        <meta name="keywords" content="...">
-        <!-- "Les mots-clefs" utiles pour les moteurs de recherche -->
-        <meta name="author" content="Séma">
-        <!-- Auteur de la page -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="css/fichier_type.css">
-        <!-- Ma feuille de style css externe -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <script src="https://kit.fontawesome.com/08c181196a.js" crossorigin="anonymous"></script>
-        <!-- Kit Fontawesome icon  -->
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <title>Cours SQL - Exercice, BDD immobilier</title>
-        <!-- Titre du document qui s'affiche dans la barre de titre du navigateur -->
-    </head>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
 
-    <body class="bg-light">
-        <header class="container mb-4">
-            <div class="row">
-                <div class="col-12 mt-5">
-                    <h1 class="text-center text-decoration-underline">Cours SQL - Exercice, BDD immobilier</h1>
-                    <p class="lead text-center">Exercice</p>
-                </div>
-            </div>
-            <!-- fin row  -->
-        </header>
-        <!-- =================================== CONTENU PRINCIPAL DE LA PAGE =================================== -->
-        <p>
-            Affichez le nom des agences : SELECT nom FROM agence
+    <title>Cours SQL - Exercice, BDD immobilier</title>
 
-            Affichez le numéro de l'agence « Orpi » : SELECT idAgence FROM agence WHERE nom = 'orpi'
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body class="bg-dark">
+    <!-- ICI on placera une navbar latérale avec le sommaire de la page -->
+    <!-- Ici on mettra un diaporama full with (cf. container-fluid) -->
+
+    <header class="container mb-4 bg-white">
+      <div class="row">
+        <div class="col-8">
+          <h1 class="display-5">Cours SQL - Exercice, BDD immobilier</h1>
+          <p class="lead">Exercice ...</p>
+        </div>
+      </div>
+      <!-- fin row -->
+    </header>
+
+    <section class="container mb-4 bg-white p-2">
+
+      <div class="row">
+        <h2>Modélisation de la BDD immobilier</h2>
+        <p><code>CREATE DATABASE immobilier CHARACTER SET 'utf8';</code></p>
+
+        <div class="col-md-6">
+          <h3>Table agence</h3>
+          <figure>
+            <img src="img/immo_agence.jpeg" alt="agence" class="img-fluid" />
+            <figcaption class="text-center text-white bg-primary">
+              Agence
+            </figcaption>
+          </figure>
+        </div>
+        <!-- fin col -->
+
+        <div class="col-md-6 bg-dark text-white">
+          <h3>Commande SQL</h3>
+          <ul>
+            <li>
+              Création de la table "agence" : <br>
+              <code
+                >CREATE TABLE IF NOT EXISTS agence ( <br>
+                idAgence int(6) NOT NULL AUTO_INCREMENT, <br>
+                nom varchar(100) NOT NULL, <br>
+                adresse varchar(100) NOT NULL, <br>
+                PRIMARY KEY (idAgence) <br>
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;</code>
+            </li>
+          </ul>
+        </div>
+        <!-- fin col -->
+
+        <div class="col-md-6 bg-dark text-white">
+          <h3>Commande SQL</h3>
+          <ul>
+            <li>
+              <br><code
+                >CREATE TABLE IF NOT EXISTS demande (<br>
+                idDemande int(5) NOT NULL AUTO_INCREMENT,<br>
+                idPersonne int(3) NOT NULL,<br>
+                genre varchar(100) NOT NULL,<br>
+                ville varchar(100) NOT NULL,<br>
+                budget int(7) NOT NULL,<br>
+                superficie int(5) NOT NULL,<br>
+                categorie varchar(100) NOT NULL,<br>
+                PRIMARY KEY (idDemande),<br>
+                KEY idPersonne (idPersonne)<br>
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1;</code>
+            </li>
+          </ul>
+        </div>
+        <!-- fin col -->
+
+        <div class="col-md-6">
+          <h3>Table demande</h3>
+          <figure>
+            <img src="img/immo_demande.jpeg" alt="demande" class="img-fluid" />
+            <figcaption class="text-center text-white bg-primary">
+              Demande
+            </figcaption>
+          </figure>
+        </div>
+        <!-- fin col -->
+
+        <div class="col-md-6">
+          <h3>Table logement</h3>
+          <figure>
+            <img src="img/immo_logement.jpeg" alt="logement" class="img-fluid" />
+            <figcaption class="text-center text-white bg-primary">
+              Logement
+            </figcaption>
+          </figure>
+        </div>
+        <!-- fin col -->
+
+        <div class="col-md-6 bg-dark text-white">
+          <h3>Commande SQL</h3>
+          <ul>
+            <li>
+              Création de la table "logement" : <br>
+              <code
+                >CREATE TABLE IF NOT EXISTS logement (<br>
+                idLogement int(4) NOT NULL AUTO_INCREMENT,<br>
+                genre varchar(100) NOT NULL,<br>
+                ville varchar(100) NOT NULL,<br>
+                prix int(7) NOT NULL,<br>
+                superficie int(5) NOT NULL,<br>
+                categorie varchar(100) NOT NULL,<br>
+                PRIMARY KEY (idLogement)<br>
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1;</code>
+            </li>
+          </ul>
+        </div>
+        <!-- fin col -->
+
+        <div class="col-md-6 bg-dark text-white">
+          <h3>Table logement_agence</h3>
+
+          <h3>Commande SQL</h3>
+          <ul>
+            <li>
+              Création de la table "logement agence" : <br>
+              <code
+                >CREATE TABLE IF NOT EXISTS logement_agence (<br>
+                idLogementAgence int(5) NOT NULL AUTO_INCREMENT,<br>
+                idAgence int(6) NOT NULL,<br>
+                idLogement int(4) NOT NULL,<br>
+                frais int(7) NOT NULL,<br>
+                PRIMARY KEY (idLogementAgence),<br>
+                KEY idAgence (idAgence),<br>
+                KEY idLogement (idLogement)<br>
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1</code>
+            </li>
+          </ul>
+        </div>
+        <!-- fin col -->
+        <div class="col-md-6">
+          <figure>
+            <img src="img/immo_logement_agence.jpeg" alt="logement agence" class="img-fluid">
+            <figcaption class="text-center text-white bg-primary"> Logement agence </figcaption>
+          </figure>
+        </div>
+        <!-- fin col -->
+
+        <div class="col-md-6">
+          <figure>
+            <img src="img/immo_logement_personne.jpeg" alt="logement personne" class="img-fluid">
+            <figcaption class="text-center text-white bg-primary"> Logement personne </figcaption>
+          </figure>
+        </div>
+        <!-- fin col -->
+        <div class="col-md-6 bg-dark text-white">
+          <h3>Table logement_personne</h3>
+
+          <h3>Commande SQL</h3>
+          <ul>
+            <li>
+              Création de la table "logement personne" : <br>
+              <code>
+                CREATE TABLE IF NOT EXISTS logement_personne (<br>
+                idLogementPersonne int(5) NOT NULL AUTO_INCREMENT,<br>
+                idPersonne int(3) NOT NULL,<br>
+                idLogement int(4) NOT NULL,<br>
+                PRIMARY KEY (idLogementPersonne),<br>
+                UNIQUE KEY idLogement (idLogement),<br>
+                KEY idPersonne (idPersonne)<br>
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1<br>
+              </code>
+            </li>
+          </ul>
+        </div>
+        <!-- fin col -->
+
+        <div class="col-md-6 bg-dark text-white">
+            <h3>Table personne</h3>
             
-            Affichez le premier enregistrement de la table logement : SELECT * FROM logement WHERE idLogement = 5067
-            
-            Affichez le nombre de logements (Alias : Nombre_de_logements) : SELECT COUNT(*) AS 'nbr_de_logement' FROM logement
-            
-            Affichez les logements à vendre à moins de 150 000 € dans l'ordre croissant des prix : 
-            
-            Afficher le nombre de logements à la location (alias : 'nombre_logement_en_location') :
-            
-            Afficher les villes différentes recherchées par les personnes demandeuse d'un logement :
-            
-            Affichez le nombre de biens à vendre par ville : (Alias  nbr_logement_envente_ville)
-            
-            Quels sont les id des logements destinés à la location ?
-            
-            Quels sont les id des logements entre 20 et 30m² ? :
+            <h3>Commande SQL</h3>
+            <ul>
+                <li>
+                    Création de la table "personne" : <br>
+                    <code>
+                        CREATE TABLE IF NOT EXISTS personne (<br>
+                        idPersonne int(3) NOT NULL AUTO_INCREMENT,<br>
+                        prenom varchar(100) NOT NULL,<br>
+                        PRIMARY KEY (idPersonne)<br>
+                        ) ENGINE=InnoDB DEFAULT CHARSET=latin1<br>
+                    </code>
+                </li>
+            </ul>
+        </div>
+        <!-- fin col -->
 
-            Quel est le prix vendeur(hors comission) du logement le moins cher à vendre ?
+        <div class="col-md-6">
+            <figure>
+              <img src="img/immo_personne.jpeg" alt="personne" class="img-fluid">
+              <figcaption class="text-center text-white bg-primary"> Logement personne </figcaption>
+            </figure>
+          </div>
+          <!-- fin col -->
+    </div>   
+    <!-- fin row -->
 
-            Dans quelle ville se trouvent les maisons à vendre ?
+    <div class="row">
+      <aside class="col-md-2 bg-light">
+        <h3>Exercices</h3>
+      </aside>
+      <div class="col-md-10">
+        <ol>
+          <li>Affichez le nom des agences : <code>SELECT nom FROM agence;</code></li>
 
-            L'agence Orpi souhaite diminuer les frais qu'elle applique sur le logement ayant l'id « 5246 ». Passer les frais de ce logement de 800 à 730€
+                    <li>Affichez le numéro de l'agence « Orpi » : <code>SELECT idAgence FROM agence WHERE nom = 'Orpi'</code></li>
+                    
+                    <li>Affichez le premier enregistrement de la table logement : <code>SELECT * FROM logement WHERE idLogement=(SELECT MIN(idLogement) FROM logement)</code> OU <code>SELECT * FROM logement ORDER BY idLogement LIMIT 0,1</code></li>
 
-            Quels sont les logements gérés par l'agence « laforet »
+                    <li>Affichez le nombre de logements (Alias : Nombre_de_logements) : <code>SELECT COUNT(idLogement) AS 'nombre de logements' FROM logement</code></li>
 
-            Affichez le nombre de propriétaires dans la ville de Paris (Alias : Nombre propriétaire parisien)
+                    <li>Affichez les logements à vendre à moins de 150 000 € dans l'ordre croissant des prix : <code>SELECT * FROM logement WHERE prix < 150000 AND categorie ='vente' ORDER BY prix</code></li>
 
-            Afficher les infos des trois premières personnes souhaitant acheter un logement
+                    <li>Afficher le nombre de logements à la location (alias : 'nombre_logement_en_location') : <code>SELECT COUNT(idLogement) AS 'nombre' FROM logement WHERE categorie = 'location'</code></li>
 
-        </p>
-        
-        
+                    <li>Afficher les villes différentes recherchées par les personnes demandeuse d'un logement : <code>SELECT DISTINCT ville FROM demande</code></li>
 
-        
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-        <!-- Bootstrap Bundle with Popper -->
-        <script src="js/fichier_type.js"></script>
-        <!-- Ma feuille JS externe -->
-    </body>
+                    <li>Affichez le nombre de biens à vendre par ville : <code>SELECT COUNT(idLogement) AS 'nombre de logements', ville FROM logement WHERE ville IN (SELECT DISTINCT(ville) FROM logement) AND categorie = 'vente' GROUP BY ville</code> OU <code>SELECT ville, COUNT(ville)AS 'nombre de logements à la vente' FROM logement WHere categorie= 'vente' GROUP BY 'ville';</code></li>
+
+                    <li>Quels sont les id des logements destinés à la location ? : <code>SELECT idLogement FROM logement WHERE categorie='location';</code></li>
+
+                    <li>Quels sont les id des logements entre 20 et 30m² ? : <code>SELECT idLogement FROM logement WHERE superficie BETWEEN '20' AND '30';</code></li>
+
+                    <li>Quel est le prix vendeur(hors comissission) du logement le moins cher a vendre ? : <code>SELECT * FROM logement WHERE categorie = 'vente' LIMIT 0,1 ORDER BY prix ASC;</code> OU <code>SELECT MIN(prix) AS 'prix minimum' FROM logement WHERE categorie = 'vente';</code></li>
+
+                    <li>Dans quelle ville se trouve les maisons à vendre ? : <code>SELECT DISTINCT(ville) FROM logement WHERE genre = 'maison' AND categorie = 'vente';</code></li>
+
+                    <li>L'agence Orpi souhaite diminuer les frais qu'elle applique sur le logement ayant l'id « 5246 ». Passer les frais de ce logement de 800 à 730€ : <code> UPDATE logement_agence SET frais = 730 WHERE idLogement = (SELECT idAgence FROM agence WHERE nom='Orpi'); </code></li>
+
+                    <li>Quels sont les logements gérés par l'agence « laforet » : <code>SELECT idLogement FROM logement_agence WHERE idAgence = (SELECT idAgence FROM agence WHERE nom = 'laforet')</code></li>
+
+                    <li>Affichez le nombre de propriétaires dans la ville de Paris (Alias : Nombre propriétaire parisien) : <code>SELECT COUNT(DISTINCT(lp.idPersonne)) AS 'nombre de proprios parisiens' FROM logement_personne lp, logement l WHERE lp.idLogement = l.idLogement AND l.ville='paris'</code></li>
+
+                    <li>Requête de jointure : affichez le bien de Robin et la ou les agences qui gère(nt) ce bien : <code>SELECT personne.prenom, logement_personne.idLogement, logement.ville, logement.superficie, logement.genre, agence.nom<br>
+                      FROM personne, logement_personne, logement, agence, logement_agence<br>
+                      WHERE personne.idPersonne = logement_personne.idPersonne<br>
+                      AND logement_personne.idLogement = logement.idLogement<br>
+                      AND logement_personne.idLogement = logement_agence.idLogement<br>
+                      AND agence.idAgence = logement_agence.idAgence<br>
+                      AND logement_personne.idLogement = 5770</code></li>
+
+                      <li>Affichez les prénoms des personnes souhaitant avoir un logement à Lyon : <code></code></li>
+
+                      Affichez les prénoms des personnes souhaitant accéder à un logement en location à Paris
+                      Affichez les prénoms des personnes souhaitant acheter un logement de la plus grande à la plus petite superficie
+                      Quel sont les prix finaux proposés par les agences pour la maison à la vente ayant la référence « 5091 » ? (Alias :  frais d'agence inclus) 
+
+                      <li></li>
+        </ol>
+      </div>
+      <!-- fin col -->
+    </div>   
+      <!-- fin row -->
+    </section>
+
+  
+
+
+    <!-- fin container -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
