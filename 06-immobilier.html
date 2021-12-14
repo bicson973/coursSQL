@@ -265,7 +265,37 @@
                       Affichez les prénoms des personnes souhaitant acheter un logement de la plus grande à la plus petite superficie
                       Quel sont les prix finaux proposés par les agences pour la maison à la vente ayant la référence « 5091 » ? (Alias :  frais d'agence inclus) 
 
-                      <li></li>
+                      <li>
+                        Affichez le nombre de logements à la vente dans la ville de recherche de « hugo » (alias : nombre)
+                        <br>
+                        <code>
+                          SELECT personne.prenom, logement.idLogement, logement.ville, logement.categorie
+                          FROM personne, logement, demande
+                          WHERE personne.idPersonne = demande.idPersonne
+                          AND personne.prenom = 'hugo'
+                        </code>
+                      </li>
+                      <li>
+                        Affichez le nombre de logements à la vente dans la ville de recherche de « hugo » et dans la superficie minimum qu’il attend ou dans une
+                        superficie supérieure (alias : nombre):
+                        <br>
+                        <code>
+                          SELECT COUNT(logement.idLogement) AS 'nombre logements ville hugo'
+                          FROM personne, demande, logement
+                          WHERE personne.idPersonne = demande.idPersonne
+                          AND personne.prenom = 'hugo'
+                          AND logement.categorie = 'vente'
+                          AND demande.ville = logement.ville;
+                        </code>
+                      </li>
+                      
+
+                        Affichez le nombre d’opportunités d’achats dans la ville de recherche de « hugo » dans la superficie minimum qu’il attend ou dans une
+                        superficie supérieure et en prenant en compte tous ses autres critères de sélection (alias : nombre):
+
+                        Affichez les prénoms des personnes souhaitant accéder à un logement en location sur la ville de Paris
+
+                      </li>
         </ol>
       </div>
       <!-- fin col -->
